@@ -42,7 +42,29 @@
                         <div class="star-wrapper">
                             <star :size="48" :score="seller.score"></star>
                         </div>
+                        <div class="title">
+                            <div class="line"> </div>
+                            <div class="text">优惠信息</div>
+                            <div class="line"></div>
+                        </div>
+                        <ul v-if="seller.supports" class="supports">
+                            <li class="support-item" v-for="item in seller.supports">
+                                <span class="icon" :class="iconClassMap[item.type]"></span>
+                                <span class="text">{{item.description}}</span>
+                            </li>
+                        </ul>
+                         <div class="title">
+                            <div class="line"> </div>
+                            <div class="text">商家公告</div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="bulletin">{{seller.bulletin}}</div>
+
                     </div>
+                </div>
+
+                 <div class="detail-close">
+                    <i class="icon-close" @click="hideDetail()"></i>
                 </div>
             </div>
 
@@ -52,7 +74,6 @@
 
 <script>
 import star from '../start/start'
-
 
 export default {
     props:{
@@ -84,6 +105,7 @@ export default {
 </script>
 
 <style >
+
     .header{
         position: relative;
         background: rgba(7,17,27,0.2);
@@ -225,10 +247,116 @@ export default {
         min-height: 100%;
         width: 100%
      }
-     .detail-wrapper .detail-main{
+     .detail-wrapper .detail-main {
          margin-top: 64px;
          height: 64px;
      }
+    
+    .detail-wrapper .detail-main .name {
+          font-size: 16px;
+          font-weight: 700;
+          width: 100%;
+          color: rgb(255,255,255);
+          line-height: 16px;
+          text-align: center;
+      }
+    .detail-wrapper .detail-main .star-wrapper {
+        margin: 16px 11px 28px 0;
+        text-align: center
+    }
+
+    .detail-wrapper .detail-main .title {
+          display: flex;
+          width: 80%;
+          margin: 0 auto 24px auto;
+    }
+    .detail-wrapper .detail-main .title .line {
+            display: inline-block;
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin: auto
+    }
+
+    .detail-wrapper .detail-main .title .text {
+            padding: 0 12px;
+            font-size: 14px;
+            font-weight: 700;
+    }
+
+    .detail-wrapper .detail-main .supports {
+        padding: 0 0 28px 36px
+    }
+
+     .detail-wrapper .detail-main .supports .support-item {
+         color: white;
+         padding: 0 6px 12px 16px
+     }
+ 
+   .detail-main .supports .support-item .text {
+        vertical-align: middle;
+        font-size: 12px;
+        font-weight: 200;
+        color: rgb(255,255,255);
+        line-height: 12px
+   }
+   .detail-main .supports .support-item .icon {
+        display: inline-block;
+        vertical-align: top;
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+   }
+
+   .detail-main .supports .support-item .icon.decrease {
+       background-image: url('./img/decrease_2@2x.png')
+   }
+   .detail-main .supports .support-item .icon.discount {
+       background-image: url('./img/discount_2@2x.png')
+   }
+   .detail-main .supports .support-item .icon.guarantee {
+       background-image: url('./img/guarantee_2@2x.png')
+   }
+   .detail-main .supports .support-item .icon.invoice {
+       background-image: url('./img/invoice_2@2x.png')
+   }
+   .detail-main .supports .support-item .icon.special {
+       background-image: url('./img/special_2@2x.png')
+   }
+   .detail-main .bulletin{
+          padding: 0 48px;
+          font-size: 12px;
+          font-weight: 200;
+          color: rgb(255,255,255);
+          line-height: 24px;
+   }
+
+   .detail-close {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: -64px auto 0 auto;
+      clear: both;
+      font-size: 32px;
+      color: rgba(255,255,255,0.5)
+   }
+
+   .detail-close.fade-enter-active, 
+   .detail-close.fade-leave-active{
+       transition: opacity .5s
+   }
+
+   .detail-close.fade-enter,
+   .detail-close.fade-leave-active {
+       opacity: 0;
+   }
+
+   
+
+
+
     
     
 </style>
