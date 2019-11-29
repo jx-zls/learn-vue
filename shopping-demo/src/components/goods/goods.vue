@@ -138,7 +138,6 @@
                             <span v-show="food.oldPrice" class="oldPrice">￥{{food.oldPrice}}</span>
                             </div>
                             <div class="cartcontrol-wrapper">
-                            <cartControl :food="food"></cartControl>
                             </div>
                         </div>
                         </li>
@@ -146,6 +145,7 @@
                 </li>
             </ul>
         </div>
+         <foodDetail :food="selectedFood" v-if="selectedFood" ref="myFood"></foodDetail>
     </div>
 
 </template>
@@ -237,6 +237,7 @@ export default {
         goDetail(food) {
             this.selectedFood = food
             this.$nextTick(() => {
+                console.log('gotoDetail', this.$refs.myFood)
                 this.$refs.myFood.showToggle()
             })
         }
